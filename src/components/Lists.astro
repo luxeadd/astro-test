@@ -1,0 +1,44 @@
+---
+// 配列
+const lists = ["top", "about", "contact", "oveview"];
+// json
+const link = {
+  href: "/",
+  text: "top",
+};
+// json配列
+const linkItems = [
+  {
+    href: "/",
+    text: "top",
+  },
+  {
+    href: "./about",
+    text: "about",
+  },
+  {
+    href: "./contact",
+    text: "contact",
+  },
+];
+---
+
+<ul class="lists">
+  <li>{lists[2]}</li>
+</ul>
+
+<ul class="lists">
+  {lists.map((list) => <li>{list}</li>)}
+</ul>
+
+<a href={link.href}>{link.text}</a>
+
+<ul>
+  {
+    linkItems.map((linkItem) => (
+      <li>
+        <a href={linkItem.href}>{linkItem.text}</a>
+      </li>
+    ))
+  }
+</ul>

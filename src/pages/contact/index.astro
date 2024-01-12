@@ -1,0 +1,19 @@
+---
+const page = "sub"
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/Button.astro";
+const imgPath = "../assets/img/";
+const h1Title = "Astoro";
+const logo = "logo.svg";
+---
+
+<Layout page={page} title="CONTACT" desc="コンタクトページの説明です">
+  <article class="article">
+    <h1 class="title">{h1Title}</h1>
+    <p>コンタクトページです。</p>
+    <figure class="img">
+      <img src={imgPath + logo} alt="ロゴ" />
+    </figure>
+    <Button text="Download" />
+  </article>
+</Layout>

@@ -1,0 +1,14 @@
+---
+const { text = "Get Started" } = Astro.props;
+---
+
+<button type="button" class="button">{text}</button>
+
+
+<style lang="scss">
+@use "../sass/global" as *;
+  .button {
+    width: 100%;
+    max-width: rem(200);
+  }
+</style>

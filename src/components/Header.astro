@@ -1,0 +1,27 @@
+---
+const { page } = Astro.props;
+---
+
+<header class="header">
+  {
+    page === "top" ? (
+      <h1>
+        <a href="/">
+          <img src="./favicon.svg" alt="Astro" width="40" height="40" />
+        </a>
+      </h1>
+    ) : (
+      <div>
+        <a href="/">
+          <img src="./favicon.svg" alt="Astro" width="40" height="40" />
+        </a>
+      </div>
+    )
+  }
+  <nav>
+    <ul class="menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="./about">About</a></li>
+    </ul>
+  </nav>
+</header>

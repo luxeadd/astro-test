@@ -1,0 +1,82 @@
+---
+const page = "top";
+import { Image, Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import Lists from "../components/Lists.astro";
+import Item from "../components/Item.astro";
+import image0 from "../images/common/logo.svg";
+import image1 from "../images/common/image1.jpg";
+import image2 from "../images/common/image2.jpg";
+const h1Title = "Astoro";
+const itemTexts = [
+  {
+    text1: "テキスト1",
+    text2: "テキスト2",
+  },
+  {
+    text1: "テキスト3",
+    text2: "テキスト4",
+  },
+  {
+    text1: "テキスト5",
+    text2: "テキスト6",
+  },
+];
+---
+
+<Layout page={page} title="TOP" desc="トップページの説明です">
+  <article class="article">
+    <div class="mv">
+      <Image src={image2} width={image2.width / 2} quality={70} alt="イメージ"/>
+    </div>
+    <h1 class="title">{h1Title}</h1>
+    <p>トップページです</p>
+    <figure class="img">
+      <Image src={image0} width={image0.width / 2} quality={70} alt="ロゴ"/>
+    </figure>
+    <figure class="image">
+      <Image src={image1} width={image1.width / 2} quality={70} alt="イメージ"/>
+    </figure>
+    <figure class="image">
+      <Picture src={image1} width={image1.width / 2} quality={70} alt="イメージ"/>
+    </figure>
+    <figure class="image">
+      <img src={image1.src} width={image1.width / 2} height={image1.height / 2} alt="イメージ"/>
+    </figure>
+    <Button text="Download" />
+    <Lists />
+    {
+      itemTexts.map((itemText) => (
+        <Item text1={itemText.text1} text2={itemText.text2} />
+      ))
+    }
+    <div class="back"></div>
+  </article>
+</Layout>
+
+
+<style lang="scss">
+  @use "../sass/global" as *;
+  .mv {
+    width: 100%;
+  }
+  .img {
+    width: 100%;
+    max-width: rem(200);
+  }
+  .image {
+    width: 100%;
+    max-width: rem(500);
+
+    img {
+      height: 100%;
+    }
+  }
+  .back {
+    width: 100%;
+    height: rem(100);
+    background: url(../images/common/image1.jpg) no-repeat center center / cover;
+  }
+
+</style>

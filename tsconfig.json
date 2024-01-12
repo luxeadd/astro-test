@@ -1,0 +1,9 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    // tsconfig.jsonファイルでAstroのTypeScript設定をstrictまたはstrictestに設定していない場合は、tsconfig.jsonを更新してstrictNullChecksを有効にする必要があるかもしれません。
+    "strictNullChecks": false,
+    // Astroプロジェクトで.jsまたは.mjsファイルを使用する場合、tsconfig.jsonでallowJsを有効にすることで、インテリセンスとエディタでの型チェックを有効にできます。
+    "allowJs": true
+  }
+}
