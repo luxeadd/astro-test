@@ -1,0 +1,12 @@
+---
+const { image } = Astro.props;
+const { stutas } = Astro.props;
+const { alt } = Astro.props;
+const { width } = Astro.props;
+const { height } = Astro.props;
+const { loading = true } = Astro.props;
+const { decoding = true } = Astro.props;
+---
+<img src={image + "." + stutas} width={width} height={height} loading={loading ? "lazy" : "eager"} decoding={decoding ? "async" : "sync"}alt={alt} />
+
+

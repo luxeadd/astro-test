@@ -7,7 +7,7 @@ export default defineConfig({
   // 最終的にデプロイされるURLです
   // site: 'https://www.my-site.dev',
   //HTMLの圧縮
-  compressHTML: false,
+  // compressHTML: false,
   // CSSスコープの詳細度設定
   scopedStyleStrategy: 'class',
   // ビルドの出力対象を指定します。
@@ -39,7 +39,7 @@ export default defineConfig({
       // ファイルの出力先
       rollupOptions: {
         output: {
-          // assetFileNames: "assets/[ext]/[name][extname]",
+          assetFileNames: "assets/[ext]/[name][extname]",
           // entryFileNames: "entry.[hash].mjs",
           // chunkFileNames: "chunks/chunk.[hash].mjs",
         },

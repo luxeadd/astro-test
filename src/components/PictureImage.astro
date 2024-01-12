@@ -1,0 +1,40 @@
+---
+const { image } = Astro.props;
+const { stutas } = Astro.props;
+const { webp = true } = Astro.props;
+const { sp = true } = Astro.props;
+const { alt } = Astro.props;
+const { width } = Astro.props;
+const { height } = Astro.props;
+const { loading = true } = Astro.props;
+const { decoding = true } = Astro.props;
+---
+
+<picture>
+  {
+    sp && (
+      <source
+        srcset={image + "_sp" + "." + "webp"}
+        type="image/webp"
+        media="(max-width: 768px)"
+      />
+    )
+  }
+  {webp && <source srcset={image + "." + "webp"} type="image/webp" />}
+  {
+    sp && webp && (
+      <source
+        srcset={image + "_sp" + "." + stutas}
+        media="(max-width: 768px)"
+      />
+    )
+  }
+  <img
+    src={image + "." + stutas}
+    width={width}
+    height={height}
+    loading={loading ? "lazy" : "eager"}
+    decoding={decoding ? "async" : "sync"}
+    alt={alt}
+  />
+</picture>
