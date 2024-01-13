@@ -1,12 +1,11 @@
 ---
 const page = "top";
-import { Image, Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
+import PictureImage from "../common/PictureImage.astro";
+import SingleImage from "../common/SingleImage.astro";
 import Button from "../components/Button.astro";
 import Lists from "../components/Lists.astro";
 import Item from "../components/Item.astro";
-import PictureImage from "../components/PictureImage.astro";
-import SingleImage from "../components/SingleImage.astro";
 const publicImage1 = "./assets/images/common/image1";
 const publicImage2 = "./assets/images/common/image2";
 const h1Title = "Astoro";
@@ -66,7 +65,7 @@ const itemTexts = [
   }
   .image2 {
     width: 100%;
-    max-width: rem(800);
+    max-width: rem(500);
   }
 
 </style>

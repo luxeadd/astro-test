@@ -1,10 +1,11 @@
 ---
 const page = "sub"
 import Layout from "../../layouts/Layout.astro";
+import PictureImage from "../../common/PictureImage.astro";
+import SingleImage from "../../common/SingleImage.astro";
 import Button from "../../components/Button.astro";
-const imgPath = "../assets/img/";
+const logo = "../assets/images/common/logo";
 const h1Title = "Astoro";
-const logo = "logo.svg";
 ---
 
 <Layout page={page} title="ABOUT" desc="アバウトページの説明です">
@@ -12,8 +13,15 @@ const logo = "logo.svg";
     <h1 class="title">{h1Title}</h1>
     <p>アバウトページです。</p>
     <figure class="img">
-      <img src={imgPath + logo} alt="ロゴ" />
+      <SingleImage image={logo} stutas="svg" width="" height="" loading="true" decoding="true" alt="" />
     </figure>
     <Button text="Download" />
   </article>
 </Layout>
+
+<style lang="scss">
+@use "../../sass/global" as *;
+  .img {
+    width: rem(300);
+  }
+</style>
