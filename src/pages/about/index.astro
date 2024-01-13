@@ -1,19 +1,20 @@
 ---
 const page = "sub"
+const path = "../";
 import Layout from "../../layouts/Layout.astro";
 import PictureImage from "../../common/PictureImage.astro";
 import SingleImage from "../../common/SingleImage.astro";
 import Button from "../../components/Button.astro";
-const logo = "../assets/images/common/logo";
+const logo = "assets/images/common/logo";
 const h1Title = "Astoro";
 ---
 
-<Layout page={page} title="ABOUT" desc="アバウトページの説明です">
+<Layout page={page} path={path} title="ABOUT" desc="アバウトページの説明です">
   <article class="article">
     <h1 class="title">{h1Title}</h1>
     <p>アバウトページです。</p>
     <figure class="img">
-      <SingleImage image={logo} stutas="svg" width="" height="" loading="true" decoding="true" alt="" />
+      <SingleImage image={path + logo} stutas="svg" width="" height="" loading="true" decoding="true" alt="" />
     </figure>
     <Button text="Download" />
   </article>

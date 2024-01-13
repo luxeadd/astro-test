@@ -1,27 +1,54 @@
 ---
 const { page = "top" } = Astro.props;
+import "../sass/styles.scss";
 import Header from "../common/Header.astro";
+import Footer from "../common/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
+const script = "assets/js/script.js";
+const {path} = Astro.props;
+const jQuery = false ;
 const { title, desc } = Astro.props;
-import "../sass/styles.scss"
-// https://docs.astro.build/ja/guides/view-transitions/
-import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!doctype html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={desc} />
+    <meta name="robots" content="noindex" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- meta情報 -->
     <title>{title}</title>
-    <ViewTransitions />
+    <meta name="description" content={desc} />
+    <meta name="keywords" content="" />
+    <!-- ogp -->
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:card" content="summary" />
+    <!-- ファビコン -->
+    <link rel="icon" href="./favicon.svg" />
+    <!-- フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- JavaScript -->
+    { jQuery &&  <script src="https://code.jquery.com/jquery-3.6.0.js"></script> }
+    <script defer src={path + script}></script>
+    <!-- AstroViewTransitions // https://docs.astro.build/ja/guides/view-transitions/ -->
+    <!-- <ViewTransitions /> -->
   </head>
   <body>
-    
-    <Header page={page} />
+    <Header page={page} path={path} />
     <main class="main">
       <slot />
     </main>
+    <Footer page={page} path={path}  />
   </body>
 </html>

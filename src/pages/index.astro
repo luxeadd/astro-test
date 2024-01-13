@@ -1,13 +1,14 @@
 ---
 const page = "top";
+const path = "./";
 import Layout from "../layouts/Layout.astro";
 import PictureImage from "../common/PictureImage.astro";
 import SingleImage from "../common/SingleImage.astro";
 import Button from "../components/Button.astro";
 import Lists from "../components/Lists.astro";
 import Item from "../components/Item.astro";
-const publicImage1 = "./assets/images/common/image1";
-const publicImage2 = "./assets/images/common/image2";
+const publicImage1 = "assets/images/common/image1";
+const publicImage2 = "assets/images/common/image2";
 const h1Title = "Astoro";
 const itemTexts = [
   {
@@ -25,28 +26,57 @@ const itemTexts = [
 ];
 ---
 
-<Layout page={page} title="TOP" desc="トップページの説明です">
+<Layout page={page} path={path} title="TOP" desc="トップページの説明です">
   <article class="article">
     <!-- メインビュー -->
     <div class="mv">
-      <PictureImage image={publicImage2} stutas="jpg" webp="" sp="" width="" height="" loading="" decoding="" alt="" />
+      <PictureImage
+        image={path + publicImage1}
+        stutas="jpg"
+        webp=""
+        sp=""
+        width=""
+        height=""
+        loading=""
+        decoding=""
+        alt=""
+      />
     </div>
-    <h1 class="title">{h1Title}</h1>
-    <p>トップページです</p>
-    <figure class="image2">
-      <PictureImage image={publicImage1} stutas="jpg" webp="" sp="" width="" height="" loading="true" decoding="true" alt="" />
-    </figure>
-    <figure class="image2">
-      <SingleImage image={publicImage1} stutas="jpg" width="" height="" loading="true" decoding="true" alt="" />
-    </figure>
-    <Button text="Download" />
-    <Lists />
-    {
-      itemTexts.map((itemText) => (
-        <Item text1={itemText.text1} text2={itemText.text2} />
-      ))
-    }
-    <div class="back"></div>
+    <div class="l-inner">
+      <h1 class="title">{h1Title}</h1>
+      <p>トップページです</p>
+      <figure class="image2">
+        <PictureImage
+          image={path + publicImage2}
+          stutas="jpg"
+          webp=""
+          sp=""
+          width=""
+          height=""
+          loading="true"
+          decoding="true"
+          alt=""
+        />
+      </figure>
+      <figure class="image2">
+        <SingleImage
+          image={path + publicImage1}
+          stutas="jpg"
+          width=""
+          height=""
+          loading="true"
+          decoding="true"
+          alt=""
+        />
+      </figure>
+      <Button text="Download" />
+      <Lists />
+      {
+        itemTexts.map((itemText) => (
+          <Item text1={itemText.text1} text2={itemText.text2} />
+        ))
+      }
+    </div>
   </article>
 </Layout>
 
@@ -67,5 +97,4 @@ const itemTexts = [
     width: 100%;
     max-width: rem(500);
   }
-
 </style>
