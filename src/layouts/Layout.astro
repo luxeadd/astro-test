@@ -4,9 +4,10 @@ import "../sass/styles.scss";
 import Header from "../common/Header.astro";
 import Footer from "../common/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
-const script = "assets/js/script.js";
-const {path} = Astro.props;
-const jQuery = false ;
+const script = "assets/js/vue.js";
+const { path } = Astro.props;
+const jQuery = false;
+const vue = true;
 const { title, desc } = Astro.props;
 ---
 
@@ -35,11 +36,12 @@ const { title, desc } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
     <!-- JavaScript -->
-    { jQuery &&  <script src="https://code.jquery.com/jquery-3.6.0.js"></script> }
+    {jQuery && <script src="https://code.jquery.com/jquery-3.6.0.js" />}
+    {vue && <script src="https://unpkg.com/vue@3/dist/vue.global.js" />}
     <script defer src={path + script}></script>
     <!-- AstroViewTransitions // https://docs.astro.build/ja/guides/view-transitions/ -->
     <!-- <ViewTransitions /> -->
@@ -49,6 +51,6 @@ const { title, desc } = Astro.props;
     <main class="main">
       <slot />
     </main>
-    <Footer page={page} path={path}  />
+    <Footer page={page} path={path} />
   </body>
 </html>

@@ -5,11 +5,22 @@ import PictureImage from "../common/PictureImage.astro";
 import SingleImage from "../common/SingleImage.astro";
 const logo = "./assets/images/common/logo";
 ---
+
 <footer class="p-footer">
   <div class="p-footer__inner">
-    <div class="p-footer__logo"><a href="">
-      <SingleImage image={path + logo} stutas="svg" width="" height="" loading="true" decoding="true" alt="ロゴ" />
-    </a></div>
+    <div class="p-footer__logo">
+      <a href="">
+        <SingleImage
+          image={path + logo}
+          stutas="svg"
+          width=""
+          height=""
+          loading="true"
+          decoding="true"
+          alt="ロゴ"
+        />
+      </a>
+    </div>
     <div class="p-footer__body">
       <ul class="p-footer__items">
         <li class="p-footer__item"><a href="">トップ</a></li>
@@ -21,93 +32,91 @@ const logo = "./assets/images/common/logo";
       </ul>
     </div>
   </div>
-  <div class="p-footer__copy"> &copy; 2021 CodeUps Inc.</div>
+  <div class="p-footer__copy">&copy; 2021 CodeUps Inc.</div>
 </footer>
 
-
 <style lang="scss">
-@use "../sass/global" as *;
-.p-footer {
-  padding: rem(32) rem(32) rem(60);
-  background: #222;
+  @use "../sass/global" as *;
+  .p-footer {
+    padding: rem(32) rem(32) rem(60);
+    background: #222;
 
-  @include mq(md) {
-    padding: rem(58) 0 rem(32);
-  }
-}
-.p-footer__inner {
-  display: flex;
-  align-items: center;
-
-  @include mq(md) {
-    display: block;
-  }
-}
-.p-footer__logo {
-  width: rem(70);
-
-  @include mq(md) {
-    width: rem(70);
-    margin: auto;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    @include mq(md) {
+      padding: rem(58) 0 rem(32);
     }
   }
-}
-.p-footer__body {
-  margin-left: auto;
+  .p-footer__inner {
+    display: flex;
+    align-items: center;
 
-  @include mq(md) {
-    margin-top: rem(8);
+    @include mq(md) {
+      display: block;
+    }
   }
-}
-.p-footer__items {
-  display: flex;
-  align-items: center;
+  .p-footer__logo {
+    width: rem(70);
 
-  @include mq(md) {
+    @include mq(md) {
+      width: rem(70);
+      margin: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+  .p-footer__body {
+    margin-left: auto;
+
+    @include mq(md) {
+      margin-top: rem(8);
+    }
+  }
+  .p-footer__items {
+    display: flex;
+    align-items: center;
+
+    @include mq(md) {
+      display: block;
+    }
+  }
+  .p-footer__item {
+    font-size: rem(16);
+    position: relative;
+    color: $white;
+    text-align: center;
+  }
+  .p-footer__item::after {
+    content: "";
     display: block;
+    width: 100%;
+    height: 1px;
+    margin-top: rem(5);
+    background: yellow;
+    opacity: 0;
+    transition: 0.3s;
   }
-}
-.p-footer__item {
-  font-size: rem(16);
-  position: relative;
-  color: $white;
-  text-align: center;
-}
-.p-footer__item::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  margin-top: rem(5);
-  background: yellow;
-  opacity: 0;
-  transition: 0.3s;
-}
-.p-footer__item:hover::after {
-  opacity: 1;
-}
-.p-footer__item + .p-footer__item {
-  margin-top: initial;
-  margin-left: rem(32);
+  .p-footer__item:hover::after {
+    opacity: 1;
+  }
+  .p-footer__item + .p-footer__item {
+    margin-top: initial;
+    margin-left: rem(32);
 
-  @include mq(md) {
-    margin-top: rem(8);
-    margin-left: initial;
+    @include mq(md) {
+      margin-top: rem(8);
+      margin-left: initial;
+    }
   }
-}
-.p-footer__copy {
-  font-size: rem(11);
-  color: $white;
-  text-align: center;
-  margin-top: rem(20);
-  @include mq(md) {
+  .p-footer__copy {
     font-size: rem(11);
+    color: $white;
+    text-align: center;
+    margin-top: rem(20);
+    @include mq(md) {
+      font-size: rem(11);
+    }
   }
-}
-
 </style>

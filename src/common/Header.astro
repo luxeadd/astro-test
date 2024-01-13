@@ -10,275 +10,313 @@ const logo = "assets/images/common/logo";
   <div class="p-header__inner">
     <!-- ヘッダーロゴ -->
     {
-    page === "top" 
-    ? 
-    <h1 class="p-header__logo">
-      <a href="/">
-        <SingleImage image={path + logo} stutas="svg" width="" height="" loading="true" decoding="true" alt="" />
-      </a>
-    </h1>
-    : 
-    <div class="p-header__logo">
-      <a href="/">
-        <SingleImage image={path + logo} stutas="svg" width="" height="" loading="true" decoding="true" alt="" />
-      </a>
-    </div>
+      page === "top" ? (
+        <h1 class="p-header__logo">
+          <a href="/">
+            <SingleImage
+              image={path + logo}
+              stutas="svg"
+              width=""
+              height=""
+              loading="true"
+              decoding="true"
+              alt=""
+            />
+          </a>
+        </h1>
+      ) : (
+        <div class="p-header__logo">
+          <a href="/">
+            <SingleImage
+              image={path + logo}
+              stutas="svg"
+              width=""
+              height=""
+              loading="true"
+              decoding="true"
+              alt=""
+            />
+          </a>
+        </div>
+      )
     }
     <!-- ドロワーアイコン -->
     <div class="p-header__drawer">
-      <button type="button" id="js-hamburger" class="c-hamburger" aria-controls="js-drawer-menu" aria-expanded="false" aria-label="メニューを開閉する">
+      <button
+        type="button"
+        id="js-hamburger"
+        class="c-hamburger"
+        aria-label="メニューを開閉する"
+        @click="hamburger = !hamburger"
+        :class="{'is_active': hamburger}"
+      >
         <span class="c-hamburger__line"></span>
       </button>
     </div>
     <!-- メニュー -->
-    <nav class="p-header__menu p-header-menu" id="js-drawer-menu" aria-hidden="true">
+    <nav
+      class="p-header__menu p-header-menu"
+      id="js-drawer-menu"
+      :class="{'is_active': hamburger}"
+    >
       <ul class="p-header-menu__items">
-        <li class="p-header-menu__item js-header-menu__item"><a href="/about/">about</a></li>
-        <li class="p-header-menu__item js-header-menu__item"><a href="">事業内容</a></li>
-        <li class="p-header-menu__item js-header-menu__item"><a href="">制作実績</a></li>
-        <li class="p-header-menu__item js-header-menu__item"><a href="">企業概要</a></li>
-        <li class="p-header-menu__item js-header-menu__item"><a href="/blog/">ブログ</a></li>
+        <li class="p-header-menu__item js-header-menu__item">
+          <a href="/about/">about</a>
+        </li>
+        <li class="p-header-menu__item js-header-menu__item">
+          <a href="">事業内容</a>
+        </li>
+        <li class="p-header-menu__item js-header-menu__item">
+          <a href="">制作実績</a>
+        </li>
+        <li class="p-header-menu__item js-header-menu__item">
+          <a href="">企業概要</a>
+        </li>
+        <li class="p-header-menu__item js-header-menu__item">
+          <a href="/blog/">ブログ</a>
+        </li>
       </ul>
     </nav>
     <!-- ドロワーメニュー展開時背景 -->
-    <!-- <div class="p-header__overlay" id="js-header__overlay"></div> -->
+    <!-- <div class="p-header__overlay" id="js-header__overlay" ></div> -->
   </div>
 </header>
 
 <style lang="scss">
-@use "../sass/global" as *;
-.p-header {
-  height: rem(80);
-  background: rgba($color: #111111, $alpha: 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: $header;
-  transition: 0.3s;
-}
-
-.p-header.change-color {
-  background: rgba($color: #111111, $alpha: 1);
-}
-
-.p-header__inner {
-  display: flex;
-  padding: 0 rem(25);
-  height: inherit;
-
-  @include mq(md) {
-    padding: 0 rem(20);
-  }
-}
-
-
-.p-header__logo {
-  width: rem(50);
-  height: inherit;
-  display: flex;
-  align-items: center;
-
-  @include mq(md) {
-    width: rem(50);
-  }
-}
-
-.p-header__logo img {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.p-header__drawer {
-  display: none;
-  @include mq(md) {
-    display: block;
+  @use "../sass/global" as *;
+  .p-header {
+    height: rem(80);
+    background: rgba($color: #111111, $alpha: 0.5);
     position: fixed;
-    width: rem(32);
-    top: rem(10);
-    right: rem(20);
-    z-index: $hamburger;
-  }
-}
-
-.p-header__drawer-menu {
-}
-
-.p-header__overlay {
-  position: fixed;
-  z-index: $drawer-back;
-  width: 100vw;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  height: 100vh;
-  background-color: #000;
-  color: #fff;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.p-header__overlay.is_active {
-  visibility: visible;
-  opacity: 0.8;
-  transition: 0.4s;
-}
-
-.p-header__menu {
-  margin-left: auto;
-
-  @include mq(md) {
-    margin-left: initial;
-  }
-}
-.p-header-menu {
-  height: inherit;
-
-  @include mq(md) {
-    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
-    max-width: rem(520);
-    height: 100vh;
+    z-index: $header;
+    transition: 0.3s;
+  }
+
+  .p-header.change-color {
+    background: rgba($color: #111111, $alpha: 1);
+  }
+
+  .p-header__inner {
+    display: flex;
+    padding: 0 rem(25);
+    height: inherit;
+
+    @include mq(md) {
+      padding: 0 rem(20);
+    }
+  }
+
+  .p-header__logo {
+    width: rem(50);
+    height: inherit;
+    display: flex;
+    align-items: center;
+
+    @include mq(md) {
+      width: rem(50);
+    }
+  }
+
+  .p-header__logo img {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .p-header__drawer {
+    display: none;
+    @include mq(md) {
+      display: block;
+      position: fixed;
+      width: rem(32);
+      top: rem(10);
+      right: rem(20);
+      z-index: $hamburger;
+    }
+  }
+
+  .p-header__drawer-menu {
+  }
+
+  .p-header__overlay {
+    position: fixed;
+    z-index: $drawer-back;
+    width: 100vw;
     top: 0;
     right: 0;
     bottom: 0;
-    overflow-y: scroll;
-    z-index: $drawer;
-    background: #000;
-    opacity: 0;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity .4s ease, visibility .4s ease, background .4s ease;
+    opacity: 0;
   }
-}
 
-.p-header-menu.is_active {
-  @include mq(md) {
-    opacity: 1;
+  .p-header__overlay.is_active {
     visibility: visible;
-    pointer-events: auto;
+    opacity: 0.8;
+    transition: 0.4s;
   }
-}
 
-.p-header-menu__items {
-  display: flex;
-  height: inherit;
-  align-items: center;
-  padding: 0;
+  .p-header__menu {
+    margin-left: auto;
 
-  @include mq(md) {
-    height: initial;
-    display: block;
-    padding: rem(120) 0 rem(100);
+    @include mq(md) {
+      margin-left: initial;
+    }
   }
-}
+  .p-header-menu {
+    height: inherit;
 
-.p-header-menu__item {
-  height: inherit;
-  color: #fff;
-}
-
-.p-header-menu__item + .p-header-menu__item {
-  margin-left: rem(30);
-
-  @include mq(md) {
-    margin-left: initial;
+    @include mq(md) {
+      position: fixed;
+      width: 100%;
+      max-width: rem(520);
+      height: 100vh;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: scroll;
+      z-index: $drawer;
+      background: #000;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        background 0.4s ease;
+    }
   }
-}
 
-.p-header-menu__item a {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  padding: 0;
+  .p-header-menu.is_active {
+    @include mq(md) {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
 
-  @include mq(md) {
-    display: inline-block;
+  .p-header-menu__items {
+    display: flex;
+    height: inherit;
+    align-items: center;
+    padding: 0;
+
+    @include mq(md) {
+      height: initial;
+      display: block;
+      padding: rem(120) 0 rem(100);
+    }
+  }
+
+  .p-header-menu__item {
+    height: inherit;
+    color: #fff;
+  }
+
+  .p-header-menu__item + .p-header-menu__item {
+    margin-left: rem(30);
+
+    @include mq(md) {
+      margin-left: initial;
+    }
+  }
+
+  .p-header-menu__item a {
     width: 100%;
     height: 100%;
-    padding: rem(10) 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 0;
+
+    @include mq(md) {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      padding: rem(10) 0;
+      text-align: center;
+    }
   }
-}
 
-.c-hamburger {
-  display: inline-block;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  width: 100%;
-}
+  .c-hamburger {
+    display: inline-block;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    width: 100%;
+  }
 
-.c-hamburger:hover,
-.c-hamburger:focus {
-}
+  .c-hamburger:hover,
+  .c-hamburger:focus {
+  }
 
-.c-hamburger__line {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 18px;
-  height: 2px;
-  background-color: $hamburger-color1;
-  -webkit-transition: inherit;
-  transition: inherit;
-}
-
-.c-hamburger__line::before,
-.c-hamburger__line::after {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: inherit;
-  content: "";
-  -webkit-transition: inherit;
-  transition: inherit;
-}
-
-.c-hamburger__line::before {
-  top: -5px;
-}
-.c-hamburger__line::after {
-  top: 5px;
-}
-.c-hamburger[aria-expanded="true"] {
-}
-.c-hamburger[aria-expanded="true"] .c-hamburger__line {
-  background-color: transparent;
-  &::before,
-  &::after {
+  .c-hamburger__line {
+    position: absolute;
     top: 0;
-    background-color: $hamburger-color2;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 18px;
+    height: 2px;
+    background-color: $hamburger-color1;
+    -webkit-transition: inherit;
+    transition: inherit;
   }
-}
-.c-hamburger[aria-expanded="true"] .c-hamburger__line::before {
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
 
-.c-hamburger[aria-expanded="true"] .c-hamburger__line::after {
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
+  .c-hamburger__line::before,
+  .c-hamburger__line::after {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    content: "";
+    -webkit-transition: inherit;
+    transition: inherit;
+  }
 
+  .c-hamburger__line::before {
+    top: -5px;
+  }
+  .c-hamburger__line::after {
+    top: 5px;
+  }
+  .c-hamburger.is_active {
+  }
+  .c-hamburger.is_active .c-hamburger__line {
+    background-color: transparent;
+    &::before,
+    &::after {
+      top: 0;
+      background-color: $hamburger-color2;
+    }
+  }
+  .c-hamburger.is_active .c-hamburger__line::before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .c-hamburger.is_active .c-hamburger__line::after {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
 </style>

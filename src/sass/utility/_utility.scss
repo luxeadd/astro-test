@@ -1,5 +1,12 @@
 @use '../global' as * ; 
 
+/* 背景固定用CSS */
+body:has(.c-hamburger.is_active) {
+  @include mq(md) {
+    overflow: hidden;
+  }
+}
+
 .u-mobile {
   display: none;
   @include mq('md') {
