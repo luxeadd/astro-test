@@ -3,9 +3,10 @@ const { page = "top" } = Astro.props;
 import "../sass/styles.scss";
 import Header from "../common/Header.astro";
 import Footer from "../common/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
 const script = "assets/js/scriptVue.js";
+import { ViewTransitions } from "astro:transitions";
 const { path } = Astro.props;
+const transition = false;
 const jQuery = false;
 const vue = true;
 const { title, desc } = Astro.props;
@@ -40,11 +41,13 @@ const { title, desc } = Astro.props;
       rel="stylesheet"
     />
     <!-- JavaScript -->
-    {jQuery && <script src="https://code.jquery.com/jquery-3.6.0.js" />}
-    {vue && <script src="https://unpkg.com/vue@3/dist/vue.global.js" />}
+    {jQuery && <script  src="https://code.jquery.com/jquery-3.6.0.js" />}
+    {vue && <script  src="https://unpkg.com/vue@3/dist/vue.global.js" />}
     <script defer src={path + script}></script>
-    <!-- AstroViewTransitions // https://docs.astro.build/ja/guides/view-transitions/ -->
-    <!-- <ViewTransitions /> -->
+    {transition &&
+      <!-- AstroViewTransitions // https://docs.astro.build/ja/guides/view-transitions/ -->
+      <ViewTransitions /> 
+    }
   </head>
   <body>
     <Header page={page} path={path} />
