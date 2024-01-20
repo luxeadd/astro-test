@@ -1,6 +1,7 @@
 ---
 const page = "top";
 const path = "./";
+const webpSet = false;
 import Layout from "../layouts/Layout.astro";
 import PictureImage from "../common/PictureImage.astro";
 import SingleImage from "../common/SingleImage.astro";
@@ -33,7 +34,7 @@ const itemTexts = [
       <PictureImage
         image={path + publicImage1}
         stutas="jpg"
-        webp=""
+        webp={webpSet}
         sp=""
         width=""
         height=""
