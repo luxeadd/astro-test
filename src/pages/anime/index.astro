@@ -1,0 +1,30 @@
+---
+const page = "sub"
+const path = "../";
+import Layout from "../../layouts/Layout.astro";
+import PictureImage from "../../common/PictureImage.astro";
+import SingleImage from "../../common/SingleImage.astro";
+const h1Title = "Astoro";
+---
+
+<Layout page={page} path={path} title="anime" desc="テストページの説明です">
+  <div class="" style="margin-top:100px"></div>
+
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  
+
+</Layout>
+
+<style lang="scss">
+@use "../../sass/global" as *;
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  margin-top: 10px;
+}
+</style>

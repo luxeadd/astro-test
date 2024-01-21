@@ -3,7 +3,7 @@ const { page } = Astro.props;
 const { path } = Astro.props;
 import PictureImage from "../common/PictureImage.astro";
 import SingleImage from "../common/SingleImage.astro";
-const logo = "assets/images/common/logo";
+const logo = "./assets/images/common/logo";
 ---
 
 <header class="l-header p-header js-header">
@@ -64,7 +64,7 @@ const logo = "assets/images/common/logo";
           <a href="/about/">about</a>
         </li>
         <li class="p-header-menu__item js-header-menu__item">
-          <a href="">事業内容</a>
+          <a href="/anime">anime</a>
         </li>
         <li class="p-header-menu__item js-header-menu__item">
           <a href="">制作実績</a>
