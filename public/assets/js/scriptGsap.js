@@ -162,3 +162,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
   });
 });
+
+[イージング]
+window.addEventListener('DOMContentLoaded', () => {
+  // https://gsap.com/docs/v3/Eases/
+  gsap.to(
+  ".js_box", {
+    x : 500, ease : 'power2.inOut', duration : 1, delay : 1
+  });
+});
