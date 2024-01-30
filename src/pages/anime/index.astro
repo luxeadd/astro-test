@@ -1,5 +1,5 @@
 ---
-const page = "sub"
+const page = "sub";
 const path = "../";
 import Layout from "../../layouts/Layout.astro";
 import PictureImage from "../../common/PictureImage.astro";
@@ -10,21 +10,127 @@ const h1Title = "Astoro";
 <Layout page={page} path={path} title="anime" desc="テストページの説明です">
   <div class="" style="margin-top:100px"></div>
 
-  <div class="box js_box"></div>
-  <div class="box js_box"></div>
-  <div class="box js_box"></div>
-  <div class="box js_box"></div>
   
-
+  <div class="" style="margin-top:100px"></div>
+  
+  <ul class="lists">
+    <li class="list"><a href="#sec1">sec1</a></li>
+    <li class="list"><a href="#sec2">sec2</a></li>
+    <li class="list"><a href="#sec3">sec3</a></li>
+    <li class="list"><a href="#sec4">sec4</a></li>
+    <li class="list"><a href="#sec5">sec5</a></li>
+  </ul>
+  <sec id="sec1" class="sec sec1">
+    <h2>sec1</h2>
+  </sec>
+  <sec id="sec2" class="sec sec2">
+    <h2>sec2</h2>
+  </sec>
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  <div class="box js_box"></div>
+  <div class="box js_box2"></div>
+  <sec id="sec3" class="sec sec3">
+    <h2>sec3</h2>
+  </sec>
+  <sec id="sec4" class="sec sec4">
+    <h2>sec4</h2>
+  </sec>
+  <sec id="sec5" class="sec sec5">
+    <h2>sec5</h2>
+  </sec>
 </Layout>
 
 <style lang="scss">
-@use "../../sass/global" as *;
+  @us"../../sass/global" as *;
 
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: #333;
-  margin-top: 10px;
-}
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    margin-top: 10px;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+
+    &.is_active {
+      background-color: red;
+    }
+  }
+  .heading {
+    position: relative;
+    margin-left: 100px;
+    display: inline-block;
+    --scaleX: 0;
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 1px;
+      background-color: #333;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) scaleX(var(--scaleX));
+    }
+    &::before {
+      left: -60px;
+    }
+    &::after {
+      right: -60px;
+    }
+  }
+
+  .wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .lists {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999999;
+    background: #fff;
+  }
+
+  .list a {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight:  bold;
+    background-color: #71dc7b;
+    cursor: pointer;
+  }
+
+  .sec {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
+  .sec1 {
+    background-color: #71dc7b;
+  }
+  .sec2 {
+    background-color: #b1c744;
+  }
+  .sec3 {
+    background-color: #996143;
+  }
+  .sec4 {
+    background-color: #35389b;
+  }
+  .sec5 {
+    background-color: #7c3e52;
+  }
+
 </style>

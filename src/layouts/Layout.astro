@@ -47,6 +47,7 @@ const { title, desc } = Astro.props;
     {vue && <script  src="https://unpkg.com/vue@3/dist/vue.global.js" />}
     {gsap && <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> }
     {gsap && <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> }
+    {gsap && <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script> }
     <script defer src={path + scriptGsap}></script>
     <script defer src={path + script}></script>
     {transition &&
