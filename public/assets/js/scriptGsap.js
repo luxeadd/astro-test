@@ -287,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // [ScrollTriggerプラグイン]
 /*
 gsap.to(
@@ -318,7 +317,7 @@ gsap.to(
     }
 });
 */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // 複数要素に順番にかけていく パターン1
   // const boxes = document.querySelectorAll('.js_box');
   // boxes.forEach((box) => {
@@ -345,19 +344,67 @@ document.addEventListener('DOMContentLoaded', () => {
   //   });
   // });
   // タイムラインとの組み合わせ
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.js_box',
-      start : 'top center',
-      end : 'bottom 20%',
-      markers : true,
-      scrub : true,
-    }
+  // const tl = gsap.timeline({
+  //   scrollTrigger: {
+  //     trigger: '.js_box',
+  //     start : 'top center',
+  //     end : 'bottom 20%',
+  //     markers : true,
+  //     scrub : true,
+  //   }
+  // });
+  // tl
+  //   .to('.js_box', { x : 100})
+  //   .to('.js_box', { y : 200})
+  //   .to('.js_box', { x : -200})
+  //   .to('.js_box', { y : 0})
+  //   .to('.js_box', { x : 0})
+});
+
+
+// [matchMedia]レスポンシブ
+document.addEventListener("DOMContentLoaded", () => {
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 768px)", () => {
+    gsap.fromTo(
+      ".card",
+      {
+        autoAlpha: 0,
+        y: 20
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        delay: 1,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: ".cards",
+          start: "top center",
+          markers: true,
+        },
+      },
+    );
   });
-  tl
-    .to('.js_box', { x : 100})
-    .to('.js_box', { y : 200})
-    .to('.js_box', { x : -200})
-    .to('.js_box', { y : 0})
-    .to('.js_box', { x : 0})
+
+  mm.add("(max-width: 767px)", () => { 
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          autoAlpha: 0,
+          y: 20
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 40%",
+            markers: true,
+          },
+        },
+      );
+    })
+  })
 });

@@ -20,6 +20,13 @@ const h1Title = "Astoro";
     <li class="list"><a href="#sec4">sec4</a></li>
     <li class="list"><a href="#sec5">sec5</a></li>
   </ul>
+  <sec id="sec0" class="sec sec0">
+    <div class="cards">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
+  </sec>
   <sec id="sec1" class="sec sec1">
     <h2>sec1</h2>
   </sec>
@@ -44,7 +51,7 @@ const h1Title = "Astoro";
 </Layout>
 
 <style lang="scss">
-  @us"../../sass/global" as *;
+  @use"../../sass/global" as *;
 
   .box {
     width: 100px;
@@ -132,5 +139,21 @@ const h1Title = "Astoro";
   .sec5 {
     background-color: #7c3e52;
   }
-
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 1000px;
+    gap: 20px;
+    @include mq(md) {
+      grid-template-columns: repeat(1, 1fr);
+      max-width: 300px;
+    }
+  }
+  .card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #333;
+  }
 </style>
