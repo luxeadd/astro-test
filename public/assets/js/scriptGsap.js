@@ -6,6 +6,9 @@
 // timeline  時系列でアニメーションを設定
 // add  アニメーション終了時にjsを追加
 
+//他のページで要素がない場合はエラーが出るので、以下の設定をする
+gsap.config({nullTargetWarn: false}) 
+
 document.addEventListener("DOMContentLoaded", () => {
   // 初期状態から移動
   /*
@@ -363,6 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // [matchMedia]レスポンシブ
+/*
 document.addEventListener("DOMContentLoaded", () => {
   const mm = gsap.matchMedia();
   mm.add("(min-width: 768px)", () => {
@@ -408,3 +412,59 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 });
+*/
+
+// ラインマーカーアニメーション アニメーション登録
+// /*
+document.addEventListener('DOMContentLoaded', () => {
+  const markers = document.querySelectorAll('.js_marker');
+  // [通常のやり方]
+  // markers.forEach((marker) => {
+  //   gsap.to(
+  //     marker, {
+  //       'backgroundSize': '100% 100%',
+  //       scrollTrigger: {
+  //         trigger: marker,
+  //         start : 'top 30%',
+  //         markers : true,
+  //       }
+  //     });
+  //   });
+
+  // [アニメーションを登録して使い回したい場合]
+  // アニメーション登録
+  gsap.registerEffect({
+    name : 'lineMarker',
+    effect : (targets, config) => { 
+      gsap.to(
+        targets, {
+          backgroundSize: config.backgroundSize,
+          duration: config.duration,
+          scrollTrigger: {
+            trigger: targets,
+            start : config.start,
+            markers : true,
+          }
+        });
+    },
+    // 初期状態
+    defaults : {
+      backgroundSize: '100% 100%',
+      duration: 1,
+      start : 'top 30%',
+    },
+  })
+  // 登録したアニメーションを実行
+  // markers.forEach((marker) => {
+  //   gsap.effects.lineMarker(marker, {});
+  // });
+  // 登録したアニメーションを実行（特定の箇所だけアニメーションを変えたい）
+  markers.forEach((marker, i) => {
+    if (i == 0 || i == 1) { 
+      gsap.effects.lineMarker(marker, {backgroundSize : '100% 60%'});
+    } else {
+      gsap.effects.lineMarker(marker, {});
+    }
+    });
+});
+// */

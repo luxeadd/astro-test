@@ -22,9 +22,9 @@ const h1Title = "Astoro";
   </ul>
   <sec id="sec0" class="sec sec0">
     <div class="cards">
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
+      <div class="card"><span class="js_marker">テキストテキストテキスト</span> テキストテキストテキストテキストテキストテキストテキストテキストテキスト</div>
+      <div class="card">テキストテキストテキストテキストテキスト<span class="js_marker">テキストテキストテキスト</span> テキストテキストテキストテキスト</div>
+      <div class="card">テキストテキストテキストテキストテキストテキストテキストテキストテキスト<span class="js_marker">テキストテキストテキスト</span> </div>
     </div>
   </sec>
   <sec id="sec1" class="sec sec1">
@@ -155,5 +155,13 @@ const h1Title = "Astoro";
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: #333;
+    padding: 5px;
+    color: #fff;
+
+    .js_marker {
+      background: linear-gradient(to bottom, transparent 60%, orange 60%);
+      background-size: 0 100%;
+      background-repeat: no-repeat;
+    }
   }
 </style>
