@@ -5,11 +5,14 @@ const webpSet = false;
 import Layout from "../layouts/Layout.astro";
 import PictureImage from "../common/PictureImage.astro";
 import SingleImage from "../common/SingleImage.astro";
+import Picture from "../common/Picture.astro";
 import Button from "../components/Button.astro";
 import Lists from "../components/Lists.astro";
 import Item from "../components/Item.astro";
 const publicImage1 = "assets/images/common/image1";
 const publicImage2 = "assets/images/common/image2";
+import largeImage from '../images/common/image1.jpg';
+import smallImage from '../images/common/image2.jpg';
 const h1Title = "Astoro";
 const itemTexts = [
   {
@@ -78,6 +81,7 @@ const itemTexts = [
         ))
       }
     </div>
+    <Picture imgSrc={largeImage} imgSrcSP={smallImage} width="500" height="400" widthSP="300" heightSP="200"  alt="" />
   </article>
 </Layout>
 

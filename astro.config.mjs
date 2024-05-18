@@ -39,7 +39,7 @@ export default defineConfig({
       // ファイルの出力先
       rollupOptions: {
         output: {
-          assetFileNames: "assets/[ext]/[name][extname]",
+          // assetFileNames: "assets/[ext]/[name][extname]",
           // entryFileNames: "entry.[hash].mjs",
           // chunkFileNames: "chunks/chunk.[hash].mjs",
         },

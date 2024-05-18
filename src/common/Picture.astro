@@ -1,0 +1,26 @@
+---
+import { getImage } from 'astro:assets';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'img'> {
+  imgSrc: ImageMetadata;
+  imgSrcSP?: ImageMetadata;
+  width?: string; 
+  height?: string;
+  widthSP?: string;
+  heightSP?: string;
+}
+
+const { imgSrc, imgSrcSP, width, height, widthSP, heightSP, ...attrs } = Astro.props;
+
+const optimizedImage = await getImage({ src: imgSrc, format: 'webp' });
+const optimizedSPImage = imgSrcSP && (await getImage({ src: imgSrcSP, format: 'webp' }));
+
+---
+
+<picture>
+  {imgSrcSP && <source media="(max-width: 768px)" srcset={optimizedSPImage?.src} {...(widthSP && { width: widthSP })} {...(height && { height: heightSP })} />}
+  {imgSrcSP && <source media="(max-width: 768px)" srcset={imgSrcSP?.src} {...(widthSP && { width: widthSP })} {...(height && { height: heightSP })} />}
+  {imgSrc && <source srcset={optimizedImage?.src} {...(width && { width })} {...(height && { height })} />}
+  <img src={imgSrc.src} {...(width && { width })} {...(height && { height })} {...attrs} />
+</picture>
