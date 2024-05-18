@@ -3,14 +3,15 @@ const { page = "top" } = Astro.props;
 import "../sass/styles.scss";
 import Header from "../common/Header.astro";
 import Footer from "../common/Footer.astro";
-const script = "assets/js/scriptVue.js";
+const script = "assets/js/script.js";
+const scriptVue = "assets/js/scriptVue.js";
 const scriptGsap = "assets/js/scriptGsap.js";
 import { ViewTransitions } from "astro:transitions";
 const { path } = Astro.props;
 const transition = false;
 const jQuery = false;
-const vue = true;
-const gsap = true;
+const vue = false;
+const gsap = false;
 const { title, desc } = Astro.props;
 ---
 
@@ -38,17 +39,16 @@ const { title, desc } = Astro.props;
     <!-- フォント -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+
     <!-- JavaScript -->
     {jQuery && <script  src="https://code.jquery.com/jquery-3.6.0.js" />}
     {vue && <script  src="https://unpkg.com/vue@3/dist/vue.global.js" />}
     {gsap && <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> }
     {gsap && <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> }
     {gsap && <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script> }
-    <script defer src={path + scriptGsap}></script>
+    {gsap && <script defer src={path + scriptGsap}></script> }
+    {vue && <script defer src={path + script}></script> }
     <script defer src={path + script}></script>
     {transition &&
       <!-- AstroViewTransitions // https://docs.astro.build/ja/guides/view-transitions/ -->

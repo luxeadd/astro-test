@@ -1,123 +1,148 @@
 ---
 const { page } = Astro.props;
 const { path } = Astro.props;
-import PictureImage from "../common/PictureImage.astro";
-import SingleImage from "../common/SingleImage.astro";
-const logo = "./assets/images/common/logo";
+import Picture from "../common/Picture.astro";
+const logo = "/assets/images/common/logo.svg";
 ---
 
-<header class="l-header p-header js-header">
+<header class="l-header p-header js-header" data-fixed-header>
   <div class="p-header__inner">
     <!-- ヘッダーロゴ -->
     {
       page === "top" ? (
         <h1 class="p-header__logo">
           <a href="/">
-            <SingleImage
-              image={path + logo}
-              stutas="svg"
-              width=""
-              height=""
-              loading="true"
-              decoding="true"
-              alt=""
-            />
+            <img src={logo} alt="" />
           </a>
         </h1>
       ) : (
         <div class="p-header__logo">
-          <a href="/">
-            <SingleImage
-              image={path + logo}
-              stutas="svg"
-              width=""
-              height=""
-              loading="true"
-              decoding="true"
-              alt=""
-            />
-          </a>
+          <img src={logo} alt="" />
         </div>
       )
     }
-    <!-- ドロワーアイコン -->
-    <div class="p-header__drawer">
+    <!-- ドロワーアイコン  -->
+    <div class="p-header__drawerBtn">
       <button
         type="button"
-        id="js-hamburger"
-        class="c-hamburger"
-        aria-label="メニューを開閉する"
-        @click="hamburger = !hamburger"
-        :class="{'is_active': hamburger}"
+        class="c-hamburger js-hamburger"
+        aria-controls="drawer_menu"
+        aria-expanded="false"
+        area-label="メニューを開閉する"
       >
         <span class="c-hamburger__line"></span>
       </button>
     </div>
-    <!-- メニュー -->
-    <nav
-      class="p-header__menu p-header-menu"
-      id="js-drawer-menu"
-      :class="{'is_active': hamburger}"
-    >
+    <!-- pcーメニュー -->
+    <nav class="p-header__pc-menu p-header-menu">
       <ul class="p-header-menu__items">
-        <li class="p-header-menu__item js-header-menu__item">
-          <a href="/about/">about</a>
+        <li class="p-header-menu__item p-header-menu__item--subMenu">
+          企業情報
+          <ul class="p-header-menu__subItems">
+            <li class="p-header-menu__subItem">
+              <a href="">私たちについて</a>
+            </li>
+            <li class="p-header-menu__subItem"><a href="">会社概要</a></li>
+            <li class="p-header-menu__subItem"><a href="">代表挨拶</a></li>
+            <li class="p-header-menu__subItem"><a href="">組織体制</a></li>
+            <li class="p-header-menu__subItem"><a href="">役員紹介</a></li>
+            <li class="p-header-menu__subItem"><a href="">沿革</a></li>
+          </ul>
         </li>
-        <li class="p-header-menu__item js-header-menu__item">
-          <a href="/anime">anime</a>
+        <li class="p-header-menu__item"><a href="#sec1">事業紹介</a></li>
+        <li class="p-header-menu__item">
+          <a href="#sec2">サステナビリティ</a>
         </li>
-        <li class="p-header-menu__item js-header-menu__item">
-          <a href="">制作実績</a>
-        </li>
-        <li class="p-header-menu__item js-header-menu__item">
-          <a href="">企業概要</a>
-        </li>
-        <li class="p-header-menu__item js-header-menu__item">
-          <a href="/blog/">ブログ</a>
+        <li class="p-header-menu__item"><a href="#sec3">お知らせ</a></li>
+        <li class="p-header-menu__item"><a href="#sec4">採用情報</a></li>
+        <li class="p-header-menu__btn">
+          <a href="#sec5" class="c-btn c-btn--mail">お問い合わせ</a>
         </li>
       </ul>
     </nav>
-    <!-- ドロワーメニュー展開時背景 -->
-    <!-- <div class="p-header__overlay" id="js-header__overlay" ></div> -->
+    <!-- ドロワーメニュー -->
+    <nav
+      class="p-header__drawer-menu p-drawer-menu js-drawer-menu"
+      id="drawer_menu"
+      area-hidden="true"
+    >
+      <ul class="p-drawer-menu__items">
+        <li id="js-drawer-menu__item" class="p-drawer-menu__item">
+          <a href="">企業情報</a>
+        </li>
+        <li id="js-drawer-menu__item" class="p-drawer-menu__item">
+          <a href="">事業紹介</a>
+        </li>
+        <li id="js-drawer-menu__item" class="p-drawer-menu__item">
+          <a href="">サステナビリティ</a>
+        </li>
+        <li id="js-drawer-menu__item" class="p-drawer-menu__item">
+          <a href="">お知らせ</a>
+        </li>
+        <li id="js-drawer-menu__item" class="p-drawer-menu__item">
+          <a href="">採用情報</a>
+        </li>
+        <li id="js-drawer-menu__item" class="p-drawer-menu__item">
+          <a href="">お問い合わせ</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
 
 <style lang="scss">
   @use "../sass/global" as *;
   .p-header {
-    height: rem(80);
-    background: rgba($color: #111111, $alpha: 0.5);
+    height: rem(100);
+    background: $white;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
     z-index: $header;
-    transition: 0.3s;
-  }
+    display: flex;
+    transition: background 0.3s ease;
 
-  .p-header.change-color {
-    background: rgba($color: #111111, $alpha: 1);
+    @include mq(md) {
+      height: rem(80);
+    }
+
+    @media print {
+      position: absolute;
+    }
+
+    &.is_active {
+      background: #ccc;
+    }
   }
 
   .p-header__inner {
     display: flex;
-    padding: 0 rem(25);
-    height: inherit;
+    gap: rem(20);
+    justify-content: space-between;
+    width: 100%;
+    padding-inline: rem(50) rem(50);
+    height: auto;
 
     @include mq(md) {
-      padding: 0 rem(20);
+      padding-inline: rem(30);
     }
   }
 
   .p-header__logo {
-    width: rem(50);
-    height: inherit;
+    width: rem(150);
+    height: initial;
     display: flex;
     align-items: center;
 
+    a {
+      width: 100%;
+      display: block;
+    }
+
     @include mq(md) {
-      width: rem(50);
+      width: rem(120);
     }
   }
 
@@ -128,195 +153,358 @@ const logo = "./assets/images/common/logo";
     height: 100%;
   }
 
-  .p-header__drawer {
+  .p-header__drawerBtn {
     display: none;
     @include mq(md) {
-      display: block;
-      position: fixed;
-      width: rem(32);
-      top: rem(10);
-      right: rem(20);
+      display: grid;
+      place-content: center;
       z-index: $hamburger;
+      position: relative;
     }
   }
 
   .p-header__drawer-menu {
   }
 
-  .p-header__overlay {
-    position: fixed;
-    z-index: $drawer-back;
-    width: 100vw;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    height: 100vh;
-    background-color: #000;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .p-header__overlay.is_active {
-    visibility: visible;
-    opacity: 0.8;
-    transition: 0.4s;
-  }
-
   .p-header__menu {
-    margin-left: auto;
-
-    @include mq(md) {
-      margin-left: initial;
-    }
   }
+
   .p-header-menu {
-    height: inherit;
+    display: flex;
+    align-items: center;
 
     @include mq(md) {
-      position: fixed;
-      width: 100%;
-      max-width: rem(520);
-      height: 100vh;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      overflow-y: scroll;
-      z-index: $drawer;
-      background: #000;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition:
-        opacity 0.4s ease,
-        visibility 0.4s ease,
-        background 0.4s ease;
-    }
-  }
-
-  .p-header-menu.is_active {
-    @include mq(md) {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
+      display: none;
     }
   }
 
   .p-header-menu__items {
     display: flex;
-    height: inherit;
     align-items: center;
-    padding: 0;
-
-    @include mq(md) {
-      height: initial;
-      display: block;
-      padding: rem(120) 0 rem(100);
-    }
+    gap: rem(50);
+    height: 100%;
   }
 
   .p-header-menu__item {
-    height: inherit;
-    color: #fff;
-  }
-
-  .p-header-menu__item + .p-header-menu__item {
-    margin-left: rem(30);
-
-    @include mq(md) {
-      margin-left: initial;
-    }
-  }
-
-  .p-header-menu__item a {
-    width: 100%;
+    font-size: rem(16);
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    text-decoration: none;
-    padding: 0;
+    position: relative;
 
-    @include mq(md) {
-      display: inline-block;
-      width: 100%;
+    &::after {
+      content: "";
+      display: block;
+      width: rem(8);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: $base-color;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      transition: all 0.5s ease;
+      opacity: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
       height: 100%;
-      padding: rem(10) 0;
-      text-align: center;
+      gap: rem(9);
+    }
+
+    a[target="_blank"]::after {
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        &::after {
+          opacity: 1;
+          transform: translate(-50%, -300%);
+        }
+      }
     }
   }
 
-  .c-hamburger {
+  .p-header-menu__btn {
+    font-size: rem(16);
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .p-header-menu__item--subMenu {
+    cursor: pointer;
+
+    @media (hover: hover) {
+      &:hover .p-header-menu__subItems {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .p-header-menu__subItems {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    width: fit-content;
+    padding: rem(30) rem(40);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(20);
+    background: $white;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .p-header-menu__subItem {
+    font-size: rem(13);
+    padding-left: rem(16);
+    position: relative;
+    width: rem(170);
+    transition: padding-left 0.3s ease;
+
+    &::before {
+      content: "";
+      display: block;
+      width: rem(8);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(#ccc, $alpha: 0.7);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+      z-index: 2;
+      transition: background 0.3s ease;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        padding-left: rem(20);
+        &::before {
+          background: $base-color;
+        }
+      }
+    }
+  }
+
+  .p-drawer-menu {
+    display: none;
+
+    @include mq(md) {
+      display: block;
+      position: fixed;
+      top: rem(80);
+      bottom: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - rem(80));
+      overflow-y: scroll;
+      z-index: $drawer;
+      background: #ccc;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        background 0.3s ease;
+    }
+  }
+
+  .p-drawer-menu[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .p-drawer-menu__items {
+    height: initial;
+    display: block;
+    padding-block: rem(135) rem(100);
+    padding-inline: $padding-pc;
+    width: 100%;
+    max-width: 800px + strip-unit($padding-pc) * 2;
+    margin-inline: auto;
+
+    @include mq(md) {
+      padding-block: rem(50) rem(100);
+      padding-inline: $padding-sp;
+    }
+  }
+
+  .p-drawer-menu__item {
+    border-bottom: 1px solid $white;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: rem(10);
+      min-height: rem(80);
+      text-align: center;
+      font-size: rem(28);
+      line-height: calc(40 / 28);
+      transition: opacity 0.3s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: rem(20);
+      text-align: left;
+
+      @include mq(md) {
+        font-size: rem(18);
+        line-height: calc(26 / 18);
+        min-height: rem(60);
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: rem(20);
+        flex: 0 0 rem(20);
+        height: rem(29);
+        background: $black;
+        clip-path: polygon(0 0, 0% 100%, 100% 50%);
+
+        @include mq(md) {
+          width: rem(12);
+          flex: 0 0 rem(12);
+          height: rem(17);
+        }
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .p-drawer-menu__bottom {
+    a {
+      display: block;
+      min-height: rem(80);
+      font-size: rem(22);
+      color: $white;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      padding: rem(10) 0;
+      transition: opacity 0.3s ease;
+
+      @include mq(md) {
+        min-height: rem(60);
+        font-size: rem(14);
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  $hamburger-color1: $white; //通常時ボタンカラー
+$hamburger-color2: $white; //展開時ボランカラー
+
+.c-hamburger {
+  @include mq(md) {
     display: inline-block;
     text-decoration: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border: none;
-    background-color: transparent;
+    background: $base-color;
     cursor: pointer;
     -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    transition: background 0.3s ease;
     position: relative;
-    width: 100%;
+    width: rem(50);
+    height: rem(50);
+    border-radius: 50%;
   }
+}
 
-  .c-hamburger:hover,
-  .c-hamburger:focus {
+@media (hover: hover) {
+  .c-hamburger:hover {
+    background: $black;
+
+    .c-hamburger__line {
+      background: $hamburger-color2;
+    }
+    &[aria-expanded="true"] {
+      .c-hamburger__line {
+        background: transparent;
+      }
+    }
   }
+}
+
+.c-hamburger__line {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(20);
+  height: 1px;
+  background: $hamburger-color1;
+  transition: background 0.3s ease;
+}
+
+.c-hamburger__line::before,
+.c-hamburger__line::after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  content: "";
+  transition: transform 0.3s ease;
+}
+
+.c-hamburger__line::before {
+  top: rem(-6);
+}
+.c-hamburger__line::after {
+  top: rem(6);
+}
+.c-hamburger[aria-expanded="true"] {
+  background: $black;
 
   .c-hamburger__line {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    width: 18px;
-    height: 2px;
-    background-color: $hamburger-color1;
-    -webkit-transition: inherit;
-    transition: inherit;
-  }
+    background: transparent;
 
-  .c-hamburger__line::before,
-  .c-hamburger__line::after {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: inherit;
-    content: "";
-    -webkit-transition: inherit;
-    transition: inherit;
-  }
-
-  .c-hamburger__line::before {
-    top: -5px;
-  }
-  .c-hamburger__line::after {
-    top: 5px;
-  }
-  .c-hamburger.is_active {
-  }
-  .c-hamburger.is_active .c-hamburger__line {
-    background-color: transparent;
     &::before,
     &::after {
       top: 0;
-      background-color: $hamburger-color2;
+      background: $hamburger-color2;
     }
   }
-  .c-hamburger.is_active .c-hamburger__line::before {
+  .c-hamburger__line::before {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
 
-  .c-hamburger.is_active .c-hamburger__line::after {
+  .c-hamburger__line::after {
     -webkit-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
+}
 </style>
