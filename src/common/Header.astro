@@ -94,13 +94,13 @@ const logo = "/assets/images/common/logo.svg";
   @use "../sass/global" as *;
   .p-header {
     height: rem(100);
-    background: $white;
+    background: var(--white);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    z-index: $header;
+    z-index: var(--header);
     display: flex;
     transition: background 0.3s ease;
 
@@ -158,7 +158,7 @@ const logo = "/assets/images/common/logo.svg";
     @include mq(md) {
       display: grid;
       place-content: center;
-      z-index: $hamburger;
+      z-index: var(--hambuger);
       position: relative;
     }
   }
@@ -198,7 +198,7 @@ const logo = "/assets/images/common/logo.svg";
       width: rem(8);
       aspect-ratio: 1;
       border-radius: 50%;
-      background: $base-color;
+      background: var(--base-color);
       position: absolute;
       top: 50%;
       left: 50%;
@@ -256,7 +256,7 @@ const logo = "/assets/images/common/logo.svg";
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: rem(20);
-    background: $white;
+    background: var(--white);
     border-radius: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     opacity: 0;
@@ -278,7 +278,7 @@ const logo = "/assets/images/common/logo.svg";
       width: rem(8);
       aspect-ratio: 1;
       border-radius: 50%;
-      background: rgba(#ccc, $alpha: 0.7);
+      background: rgba(#ccc, 0.7);
       position: absolute;
       top: 50%;
       left: 0;
@@ -291,7 +291,7 @@ const logo = "/assets/images/common/logo.svg";
       &:hover {
         padding-left: rem(20);
         &::before {
-          background: $base-color;
+          background: var(--base-color);
         }
       }
     }
@@ -310,7 +310,7 @@ const logo = "/assets/images/common/logo.svg";
       width: 100%;
       height: calc(100% - rem(80));
       overflow-y: scroll;
-      z-index: $drawer;
+      z-index: var(--drawer);
       background: #ccc;
       opacity: 0;
       visibility: hidden;
@@ -332,19 +332,18 @@ const logo = "/assets/images/common/logo.svg";
     height: initial;
     display: block;
     padding-block: rem(135) rem(100);
-    padding-inline: $padding-pc;
+    padding-inline: var(--padding-pc);
     width: 100%;
-    max-width: 800px + strip-unit($padding-pc) * 2;
     margin-inline: auto;
 
     @include mq(md) {
       padding-block: rem(50) rem(100);
-      padding-inline: $padding-sp;
+      padding-inline: var(--padding-sp);
     }
   }
 
   .p-drawer-menu__item {
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid var(--white);
 
     a {
       display: block;
@@ -374,7 +373,7 @@ const logo = "/assets/images/common/logo.svg";
         width: rem(20);
         flex: 0 0 rem(20);
         height: rem(29);
-        background: $black;
+        background: var(--black);
         clip-path: polygon(0 0, 0% 100%, 100% 50%);
 
         @include mq(md) {
@@ -397,7 +396,7 @@ const logo = "/assets/images/common/logo.svg";
       display: block;
       min-height: rem(80);
       font-size: rem(22);
-      color: $white;
+      color: var(--white);
       display: flex;
       align-items: center;
       text-align: left;
@@ -417,94 +416,93 @@ const logo = "/assets/images/common/logo.svg";
     }
   }
 
-  $hamburger-color1: $white; //通常時ボタンカラー
-$hamburger-color2: $white; //展開時ボランカラー
-
-.c-hamburger {
-  @include mq(md) {
-    display: inline-block;
-    text-decoration: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    background: $base-color;
-    cursor: pointer;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: background 0.3s ease;
-    position: relative;
-    width: rem(50);
-    height: rem(50);
-    border-radius: 50%;
-  }
-}
-
-@media (hover: hover) {
-  .c-hamburger:hover {
-    background: $black;
-
-    .c-hamburger__line {
-      background: $hamburger-color2;
+  .c-hamburger {
+    --hamburger-color1: var(--white); //通常時ボタンカラー
+    --hamburger-color2: var(--white); //展開時ボランカラー
+    @include mq(md) {
+      display: inline-block;
+      text-decoration: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: none;
+      background: var(--base-color);
+      cursor: pointer;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: background 0.3s ease;
+      position: relative;
+      width: rem(50);
+      height: rem(50);
+      border-radius: 50%;
     }
-    &[aria-expanded="true"] {
+  }
+
+  @media (hover: hover) {
+    .c-hamburger:hover {
+      background: var(--black);
+
       .c-hamburger__line {
-        background: transparent;
+        background: var(--hamburger-color2);
+      }
+      &[aria-expanded="true"] {
+        .c-hamburger__line {
+          background: transparent;
+        }
       }
     }
   }
-}
-
-.c-hamburger__line {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: rem(20);
-  height: 1px;
-  background: $hamburger-color1;
-  transition: background 0.3s ease;
-}
-
-.c-hamburger__line::before,
-.c-hamburger__line::after {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  content: "";
-  transition: transform 0.3s ease;
-}
-
-.c-hamburger__line::before {
-  top: rem(-6);
-}
-.c-hamburger__line::after {
-  top: rem(6);
-}
-.c-hamburger[aria-expanded="true"] {
-  background: $black;
 
   .c-hamburger__line {
-    background: transparent;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: rem(20);
+    height: 1px;
+    background: var(--hamburger-color1);
+    transition: background 0.3s ease;
+  }
 
-    &::before,
-    &::after {
-      top: 0;
-      background: $hamburger-color2;
+  .c-hamburger__line::before,
+  .c-hamburger__line::after {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    content: "";
+    transition: transform 0.3s ease;
+  }
+
+  .c-hamburger__line::before {
+    top: rem(-6);
+  }
+  .c-hamburger__line::after {
+    top: rem(6);
+  }
+  .c-hamburger[aria-expanded="true"] {
+    background: var(--black);
+
+    .c-hamburger__line {
+      background: transparent;
+
+      &::before,
+      &::after {
+        top: 0;
+        background: var(--hamburger-color2);
+      }
+    }
+    .c-hamburger__line::before {
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .c-hamburger__line::after {
+      -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
     }
   }
-  .c-hamburger__line::before {
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-  .c-hamburger__line::after {
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-  }
-}
 </style>
