@@ -321,6 +321,12 @@ gsap.to(
 });
 */
 document.addEventListener("DOMContentLoaded", () => {
+
+  // スクロールトリガーの位置がうまく行かない場合
+  // setTimeout(function () {
+  //   ScrollTrigger.refresh();
+  // }, 100); 
+
   // 複数要素に順番にかけていく パターン1
   // const boxes = document.querySelectorAll('.js_box');
   // boxes.forEach((box) => {
@@ -362,6 +368,34 @@ document.addEventListener("DOMContentLoaded", () => {
   //   .to('.js_box', { x : -200})
   //   .to('.js_box', { y : 0})
   //   .to('.js_box', { x : 0})
+
+  // 複数要素の連続して時間差でアニメーションをかける
+  // gsap.utils.toArray('.js_fadeSeries').forEach((fadeSeriesItem, index) => {
+  //   gsap.fromTo(
+  //     fadeSeriesItem,
+  // {
+  //   opacity: 0,
+  //   y: 100,
+  // },
+  // {
+  //   opacity: 1,
+  //   y: 0,
+  //   duration: 1,
+  //   delay: index * 0.3,
+  //   ease: 'none',
+  //   scrollTrigger: {
+  //     trigger: fadeSeriesItem, //対象の要素
+  //     start: 'top 60%', //開始位置
+  //     end: 'top 20%', // 終了位置
+  //     markers: true,
+  //     markers: {
+  //       startColor: 'red',
+  //       endColor: 'blue'
+  //     }
+  //     }
+  //   }
+  // );
+  // });
 });
 
 
